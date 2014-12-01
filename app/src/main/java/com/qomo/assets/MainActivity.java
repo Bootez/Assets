@@ -1,17 +1,33 @@
 package com.qomo.assets;
 
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import java.io.InputStream;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imageView = (ImageView)findViewById(R.id.iv_show);
+
+        try {
+            InputStream inputStream = getResources().getAssets().open("logo.png");
+            imageView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
